@@ -58,3 +58,9 @@
     min-width: 24rem;
   }
 }
+
+@media screen and (min-width: 768px){
+  .content{
+    justify-content: flex-end;
+  }
+}
