@@ -1,24 +1,27 @@
-import { Button, CircularProgress, Stack, TextField } from "@mui/material";
+import { Button, Stack, TextField, LinearProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import { useSnackbar } from "notistack";
-import { LinearProgress } from '@mui/material';
 import React, { useState, useEffect } from "react";
 import { config } from "../App";
 import Footer from "./Footer";
 import Header from "./Header";
 import "./Register.css";
+import { useHistory, Link } from "react-router-dom";
+
+
 
 //**************************************************************************************************//
 const Register = () => {
+  const history = useHistory(); 
   const { enqueueSnackbar } = useSnackbar();
   const [formData, setformData] = useState({});
   const [loading, setLoading] = useState(false);
+  const [hasHiddenAuthButtons, setHeader]=useState("register")
 
 
 /**************************************************************************************************/
-  // TODO: CRIO_TASK_MODULE_REGISTER - Implement the register function
-  /**
+    /**
    * Definition for register handler
    * - Function to be called when the user clicks on the register button or submits the register form
    *
@@ -46,6 +49,8 @@ const Register = () => {
     setformData(x => ({...x, [name]: value}))
   }
   
+  /**************************************************************************************************/
+  // TODO: CRIO_TASK_MODULE_REGISTER - Implement the register function
   const register = async () => {
     const userData={
       username:formData.username,
@@ -60,8 +65,8 @@ const Register = () => {
       username:"",
       password:"",
       confirmPassword:"" })
-  }
-        
+      history.push("/login")
+  }  
        
     catch (error) {
       console.log("catch")
@@ -69,15 +74,13 @@ const Register = () => {
       if(error.response.status===400){
         enqueueSnackbar(error.response.data.message, { variant: `error` });}
       else {
-        enqueueSnackbar('Something went wrong. Check that the backend is running,reachable and returns JSON.', { variant: `error` })
-      }
-      // else{
-      //   enqueueSnackbar("Username is already taken",{ variant: `error` })
-      // }
-      }
-    }
-      } //post ends
-     //register ends
+        enqueueSnackbar('Something went wrong. Check that the backend is running,reachable and returns JSON.', { variant: `error` });
+        setLoading(false);
+       } 
+     }
+   } 
+   
+ } 
 
 /**************************************************************************************************/
   // TODO: CRIO_TASK_MODULE_REGISTER - Implement user input validation logic
@@ -121,7 +124,6 @@ const Register = () => {
       return false
     }
     else {return true};
-    setLoading(false);
   };
 
   /**************************************************************************************************/
@@ -134,7 +136,7 @@ const Register = () => {
     >
       <Header hasHiddenAuthButtons />
       <Box className="content">
-        <Stack spacing={2} className="form">
+        <Stack spacing={1} className="form">
           <h2 className="title">Register</h2>
           <TextField
             id="username"
@@ -172,14 +174,13 @@ const Register = () => {
            
           <p className="secondary-action">
             Already have an account?{" "}
-             <a className="link" href="#">
-              Login here
-             </a>
+             <Link to="/login">Login here</Link>
           </p>
         </Stack>
       </Box>
       <Footer />
     </Box>
+    
   );
 };
 
