@@ -167,7 +167,8 @@ const Products = () => {
         <TextField
           name="search"
           placeholder="Search for items/categories"
-          class="search-desktop"
+          className="search-desktop"
+          size="small "
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
