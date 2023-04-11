@@ -54,13 +54,13 @@ const Login = () => {
    *
    */
   const login = async (formData) => {
-    console.log(logData)
+    //console.log(logData)
     if (validateInput(logData)){
     try{
       let response = await axios.post(`${config.endpoint}/auth/login`, logData)
       enqueueSnackbar("Logged in successfully", { variant: `success`});
       setLoading(false);
-      console.log(response)
+      //console.log(response)
       persistLogin(response.data.token, response.data.username, response.data.balance);
     }
     catch(error){
@@ -68,7 +68,7 @@ const Login = () => {
         enqueueSnackbar(error.response.data.message, { variant: `error`});
         }
       else{
-        console.log(error)
+        //console.log(error)
         enqueueSnackbar("Something went wrong. Check that the backend is running, reachable and returns valid JSON.", {variant: `error`})
        }
       setLoading(false);

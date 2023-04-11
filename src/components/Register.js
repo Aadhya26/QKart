@@ -17,9 +17,7 @@ const Register = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [formData, setformData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [hasHiddenAuthButtons, setHeader]=useState("register")
-
-
+  
 /**************************************************************************************************/
     /**
    * Definition for register handler
@@ -69,7 +67,6 @@ const Register = () => {
   }  
        
     catch (error) {
-      console.log("catch")
       setLoading(false)
       if(error.response.status===400){
         enqueueSnackbar(error.response.data.message, { variant: `error` });}

@@ -20,6 +20,7 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
         <Box className="header-title">
             <img src="logo_light.svg" alt="QKart-icon"></img>
         </Box>
+        {children}
 
         {hasHiddenAuthButtons?
         <Button
@@ -38,7 +39,7 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
         :
         <Stack direction="row" spacing={2}>
         <Button onClick={()=>history.push("/login")}>  Login </Button>
-        <Button className="button" variant="contained" onClick={()=>history.push("/register")}> <Link to="/register">Register </Link></Button>
+        <Button className="button" variant="contained" onClick={()=>history.push("/register")}> Register </Button>
         </Stack> 
         }
         </Box>
