@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "module_id": "ME_QKART_FRONTEND_V2_MODULE_PRODUCTS",
+=======
+    "module_id": "ME_QKART_FRONTEND_V2_MODULE_CART",
+>>>>>>> e7ef4956fa0d9eed00ff1db4b4fed8bbb6626109
     "me_id": "ME_QKART_FRONTEND_V2"
 }
   

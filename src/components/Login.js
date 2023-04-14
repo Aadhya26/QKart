@@ -62,6 +62,7 @@ const Login = () => {
       setLoading(false);
       //console.log(response)
       persistLogin(response.data.token, response.data.username, response.data.balance);
+      history.push("/")
     }
     catch(error){
       if (error.response){

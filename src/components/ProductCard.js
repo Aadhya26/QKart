@@ -11,7 +11,7 @@ import {
 import React from "react";
 import "./ProductCard.css";
 
-const ProductCard = ({ product, handleAddToCart }) => {
+const ProductCard = ({ product, handleAddToCart, token, items, products}) => {
   return (
     <Card className="card" variant="outlined">
       <CardMedia component="img" image={product.image} sx={{ padding: "1em 1em o 1em", objectFit: "contain" }}/>
@@ -27,7 +27,7 @@ const ProductCard = ({ product, handleAddToCart }) => {
       </CardContent>
 
       <CardActions>
-        <Button fullWidth size="large" variant="contained" > <AddShoppingCartOutlined /> ADD TO CART</Button>
+        <Button fullWidth size="large" variant="contained" onClick={() => {handleAddToCart(token, items, products, product._id, 1, true)}}> <AddShoppingCartOutlined /> ADD TO CART</Button>
       </CardActions>
     </Card>
   );
