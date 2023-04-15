@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/"> <Products /> </Route>
         <Route path="/register"> <Register /> </Route>
         <Route path="/login"> <Login /> </Route>
-        <Route path="/checkout"> <Checkout /> </Route>
+        <Route exact path="/checkout"> <Checkout /> </Route>
         </Switch>
       </div>
       </ThemeProvider>

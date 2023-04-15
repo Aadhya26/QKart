@@ -151,6 +151,10 @@ const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
     );
   }
 
+  const redirectCheckout =() => {
+    history.push("/checkout")
+  }
+
   return (
     <>
       <Box className="cart">
@@ -218,7 +222,7 @@ const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
             variant="contained"
             startIcon={<ShoppingCart />}
             className="checkout-btn"
-            onClick={history.push("/checkout")}
+            onClick={redirectCheckout}
           >
             Checkout
           </Button>
