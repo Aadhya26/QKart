@@ -138,8 +138,9 @@ const ItemQuantity = ({
  */
 
     
-const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
+const Cart = ({ productsdata, cart=[], handleQuantity, cartData, isReadOnly}) => {
   const history = useHistory();
+  //Empty Cart display
   if (!cart.length) {
     return (
       <Box className="cart empty">
@@ -151,9 +152,11 @@ const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
     );
   }
 
+  //Redirect to Checkout Page
   const redirectCheckout =() => {
     history.push("/checkout")
   }
+
 
   return (
     <>
@@ -172,13 +175,35 @@ const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
                   height="100%"
               />
           </Box>
+
+          {isReadOnly?
           <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+          height="6rem"
+          paddingX="1rem"
+          >
+          <div>{x.name}</div>
+          <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+          >
+            <Box padding="0.5rem" data-testid="item-qty"> Qty: {x.qty}  </Box>
+            <Box padding="0.5rem" fontWeight="700"> ${x.cost} </Box>
+          </Box>
+          </Box>
+      
+    :
+    
+            <Box
               display="flex"
               flexDirection="column"
               justifyContent="space-between"
               height="6rem"
               paddingX="1rem"
-          >
+             >
               <div>{x.name}</div>
               <Box
                   display="flex"
@@ -192,7 +217,8 @@ const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
                   ${x.cost}
               </Box>
               </Box>
-          </Box>
+            </Box>}
+          
       </Box>
         )})}
 
@@ -208,7 +234,7 @@ const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
           <Box
             color="#3C3C3C"
             fontWeight="700"
-            fontSize="1.5rem"
+            fontSize="1.5rem" 
             alignSelf="center"
             data-testid="cart-total"
           >
@@ -216,6 +242,8 @@ const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
           </Box>
         </Box>
 
+        {isReadOnly?
+        null :
         <Box display="flex" justifyContent="flex-end" className="cart-footer">
           <Button
             color="primary"
@@ -226,8 +254,28 @@ const Cart = ({ productsdata, cart=[], handleQuantity, cartData}) => {
           >
             Checkout
           </Button>
+        </Box> }
+      </Box>
+
+      {isReadOnly? 
+      <Box padding="1rem" className="cart">
+        <Box><h2> Order Details</h2></Box>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Box alignSelf="center">
+            <p>Products</p> <p> Subtotal</p> <p>Shipping Charges</p> <h3> Total</h3>
+          </Box>
+          <Box alignSelf="center" justifyItems="flex-end">
+            <p>{cart.length}</p> <p> ${getTotalCartValue(cart)}</p> <p> $0</p> <h3> ${getTotalCartValue(cart)}</h3>
+          </Box>
         </Box>
       </Box>
+      :
+      null 
+      }
     </>
   );
 };

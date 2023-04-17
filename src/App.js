@@ -2,6 +2,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Products from "./components/Products";
 import Checkout from "./components/Checkout";
+import Thanks from "./components/Thanks";
 import ipConfig from "./ipConfig.json";
 import { Route, Switch, BrowserRouter as Router, Link } from "react-router-dom";
 import {ThemeProvider} from "@mui/system";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/register"> <Register /> </Route>
         <Route path="/login"> <Login /> </Route>
         <Route exact path="/checkout"> <Checkout /> </Route>
+        <Route exact path="/thanks"> <Thanks /> </Route>
         </Switch>
       </div>
       </ThemeProvider>

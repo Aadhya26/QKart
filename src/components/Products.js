@@ -80,11 +80,18 @@ const Products = () => {
    */
 
   //***************************************************************************************************** */
- useEffect(() => performAPICall(),[]);
-
- if(localStorage.getItem("token")){
-  useEffect(() => fetchCart(localStorage.getItem("token")), [])}
+//  useEffect(() => performAPICall(),[]);
+//  if(localStorage.getItem("token")){
+//   useEffect(() => fetchCart(localStorage.getItem("token")), [])}
  
+useEffect(() => {
+  const onLoadHandler = async () => {
+    performAPICall();
+    if (localStorage.getItem("token")) 
+      fetchCart(localStorage.getItem("token"));
+  };
+  onLoadHandler();
+}, []);
 
   const performAPICall = async () => {
     setLoading(true)
